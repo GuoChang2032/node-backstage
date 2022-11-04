@@ -1,15 +1,25 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var morgan = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const morgan = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
-var app = express();
+const app = express();
 const logger = require('./logger.js')
 
+const cors = require('cors')
+
+//跨域问题解决方面
+app.all('*', function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');//可设置多个跨域
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Credentials', true)//允许客户端携带验证信息
+  next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,7 +35,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
@@ -40,14 +50,14 @@ app.use(function(req, res, next) {
 //   res.render('error');
 // });
 
-const _errorHandler = (err,req,res,next)=>{
+const _errorHandler = (err, req, res, next) => {
   logger.error(`${req.method} ${req.originalUrl} ${err.message}`)
   const errorMsg = err.message
   res.status(err.status || 500).json({
-    code:-1,
-    success:false,
-    message:errorMsg,
-    data:{}
+    code: -1,
+    success: false,
+    message: errorMsg,
+    data: {}
   })
 }
 app.use(_errorHandler)

@@ -9,3 +9,9 @@
 2022-11-03 17:18:21 error [www]: GET /user Not Found
 2022-11-03 17:19:16 error [www]: GET /users Not Found
 2022-11-03 17:19:38 error [www]: GET /users Not Found
+2022-11-04 09:36:25 error [www]: GET /info Not Found
+2022-11-04 11:15:23 error [www]: OPTIONS /deleteUser?id=2 Not Found
+2022-11-04 11:17:04 error [www]: OPTIONS /deleteUser?id=2 Not Found
+2022-11-04 11:26:54 error [www]: OPTIONS /deleteUser?id=2 Not Found
+2022-11-04 13:04:07 error [www]: GET /info Not Found
+2022-11-04 13:04:07 error [www]: GET /formula/0?page=1&size=20 Not Found
