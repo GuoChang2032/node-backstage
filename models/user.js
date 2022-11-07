@@ -1,9 +1,9 @@
 const Base = require('./base')
-
-class User extends Base{
-    constructor(props='t_user'){
+class User extends Base {
+    constructor(props = 't_user') {
         super(props)
     }
+   
 }
 
 
