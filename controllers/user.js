@@ -1,14 +1,14 @@
 const user = require('../models/user.js')
 const url = require('url')
-const querystring = require('querystring')
 const userController = {
     showUser: async function (req, res, next) {
         try {
             const userData = await user.all()
+            const reversD = userData.reverse()
             res.json({
                 code: 200,
                 message: '操作成功',
-                data: userData,
+                data: reversD,
                 success: true
             })
         } catch (e) {
@@ -29,10 +29,9 @@ const userController = {
     },
     deleteUser: async function (req, res, next) {
         try {
-            console.log('res', req)
             let arg = url.parse(req.url).query;
-            let params = querystring.parse(arg)
-            await user.delete(params.id)
+            console.log('zzzzzz', arg)
+            await user.delete(arg.id)
             res.json({
                 code: 200,
                 message: '操作成功',

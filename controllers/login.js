@@ -18,12 +18,11 @@ const loginController = {
             }
             p.password = md5(p.password)
             const isRight = await user.userLogin(p)
-            console.log('zzz',isRight)
             if (isRight && isRight.length > 0) {
                 res.json(utils.success(null, '登录成功'))
                 
             } else {
-                res.json(utils.fail(null, '账号或密码错误'))
+                res.json(utils.fail('账号或密码错误'))
             }
         } catch (error) {
             res.json(utils.fail(error))

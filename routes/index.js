@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/getUser',userController.showUser)
 router.post('/addUser',userController.addUser)
-router.delete('/deleteUser',userController.deleteUser)
+router.delete('/deleteUser?id',userController.deleteUser)
 router.post('/updateUser',userController.updateUser)
 
 
